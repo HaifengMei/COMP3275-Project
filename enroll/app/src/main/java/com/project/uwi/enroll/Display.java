@@ -52,7 +52,7 @@ public class Display extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent i = new Intent(Display.this, Course_Details.class);
                 Bundle bundle = new Bundle();
-                bundle.putInt("courseid", position);
+                bundle.putString("courseCode", courses.get(position));
                 i.putExtras(bundle);
                 startActivity(i);
             }

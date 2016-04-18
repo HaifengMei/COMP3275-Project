@@ -12,10 +12,18 @@
     tools:context="com.project.uwi.enroll.Scan"
     tools:showIn="@layout/activity_scan">
 
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText"
+        android:layout_centerHorizontal="true"/>
+
     <Button android:id="@+id/scan_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:layout_below="@id/editText"
         android:text="scan" />
     <TextView
         android:id="@+id/scan_format"
@@ -31,6 +39,7 @@
         android:textIsSelectable="true"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/scan_format" />
+
 
 
 </RelativeLayout>

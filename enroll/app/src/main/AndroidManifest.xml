@@ -36,14 +36,13 @@
                 android:value="com.project.uwi.enroll.MainActivity" />
         </activity>
         <activity
-            android:name=".Course_Details"
-            android:label="@string/title_activity_course__details"
-            android:parentActivityName=".Display"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.project.uwi.enroll.Display" />
-        </activity>
+            android:name=".CourseList"
+            android:label="@string/title_activity_course_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".StudentList"
+            android:label="@string/title_activity_student_list"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

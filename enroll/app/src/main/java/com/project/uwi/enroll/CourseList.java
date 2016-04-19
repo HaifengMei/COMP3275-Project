@@ -24,7 +24,7 @@ public class CourseList extends AppCompatActivity {
     ArrayList<String> courses = new ArrayList<>();
     ListView lv;
     String Func;
-    ArrayAdapter<String> adapter;
+    int firstLoad = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,13 +44,6 @@ public class CourseList extends AppCompatActivity {
             Func = bundle.getString("Function");
         }
 
-        SelectCourse();
-
-    }
-
-    protected void onStart() {//Pull courses from firebase server
-        super.onStart();
-
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, courses);
         lv.setAdapter(adapter);
 
@@ -61,6 +54,22 @@ public class CourseList extends AppCompatActivity {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 String course = dataSnapshot.getValue(String.class);
                 courses.add(course);
+                /*if(firstLoad==0){
+                    courses.add(course);
+                    firstLoad=1;
+                }else{
+                    int i=0;
+                    while(!courses.isEmpty()){
+                        if(!courses.get(i).equals(course)){
+                            courses.add(course);
+                            break;
+                        }
+                        i++;
+                    }
+                }*/
+
+
+
                 adapter.notifyDataSetChanged();
             }
 
@@ -84,7 +93,64 @@ public class CourseList extends AppCompatActivity {
 
             }
         });
+
+        SelectCourse();
+
     }
+
+   /* protected void onStart() {//Pull courses from firebase server
+        super.onStart();
+
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, courses);
+        lv.setAdapter(adapter);
+
+
+        Firebase course = mRootRef.child("courses");
+        course.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                String course = dataSnapshot.getValue(String.class);
+                courses.add(course);
+                /*if(firstLoad==0){
+                    courses.add(course);
+                    firstLoad=1;
+                }else{
+                    int i=0;
+                    while(!courses.isEmpty()){
+                        if(!courses.get(i).equals(course)){
+                            courses.add(course);
+                            break;
+                        }
+                        i++;
+                    }
+                }
+
+
+
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+    }*/
 
     protected void SelectCourse(){// Pases the course code to the respective activity for use
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {

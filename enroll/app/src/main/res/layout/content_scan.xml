@@ -13,33 +13,49 @@
     tools:showIn="@layout/activity_scan">
 
 
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText"
-        android:layout_centerHorizontal="true"/>
-
     <Button android:id="@+id/scan_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="scan"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/editText"
-        android:text="scan" />
-    <TextView
+        android:layout_marginBottom="99dp" />
+    <!--<TextView
         android:id="@+id/scan_format"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textIsSelectable="true"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/scan_button" />
+        android:hint="Format"
+        android:layout_below="@+id/scan_content"
+        android:layout_centerHorizontal="true" />-->
+
     <TextView
-        android:id="@+id/scan_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textIsSelectable="true"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/txt_courseCode"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/scan_format" />
+        android:hint="Course Code" />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/img_scan"
+        android:src="@drawable/scan"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/Student_ID"
+        android:layout_below="@+id/txt_courseCode" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/Student_ID"
+        android:hint="Student ID"
+        android:layout_above="@+id/scan_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="26dp" />
 
 
 </RelativeLayout>

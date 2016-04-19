@@ -2,22 +2,27 @@ package com.project.uwi.enroll;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.project.uwi.enroll.com.google.zxing.integration.android.IntentIntegrator;
 import com.project.uwi.enroll.com.google.zxing.integration.android.IntentResult;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Scan extends AppCompatActivity implements View.OnClickListener {
 
     private Button scanBtn;
-    private TextView formatTxt, contentTxt;
+    private TextView txt_courseCode, StudentID;
+    private String courseCode="Code";
+    private Map<String, Integer> map = new HashMap<>();
+    ImageView img_present;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,21 +30,25 @@ public class Scan extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.activity_scan);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        scanBtn = (Button) findViewById(R.id.scan_button);
-        formatTxt = (TextView) findViewById(R.id.scan_format);
-        contentTxt = (TextView) findViewById(R.id.scan_content);
+        Bundle bundle = getIntent().getExtras();
+        if (bundle.containsKey("courseCode")){
+            courseCode = bundle.getString("courseCode");
 
+        }
+        setUpUi();
+
+
+    }
+
+    public void setUpUi(){
+        scanBtn = (Button) findViewById(R.id.scan_button);
+        map.put("scan_success", R.drawable.present);
+        img_present = (ImageView) findViewById(R.id.img_scan);
+        StudentID = (TextView) findViewById(R.id.Student_ID);
+        txt_courseCode = (TextView) findViewById(R.id.txt_courseCode);
+        txt_courseCode.setText(courseCode);
         scanBtn.setOnClickListener(this);
     }
 
@@ -59,9 +68,8 @@ public class Scan extends AppCompatActivity implements View.OnClickListener {
         if (scanningResult != null) {
             //we have a result
             String scanContent = scanningResult.getContents();
-            String scanFormat = scanningResult.getFormatName();
-            formatTxt.setText("FORMAT: " + scanFormat);
-            contentTxt.setText("CONTENT: " + scanContent);
+            StudentID.setText("ID: " + scanContent);
+            img_present.setImageResource(map.get("scan_success"));
         }else{
             Toast toast = Toast.makeText(getApplicationContext(),
                     "No scan data received!", Toast.LENGTH_SHORT);

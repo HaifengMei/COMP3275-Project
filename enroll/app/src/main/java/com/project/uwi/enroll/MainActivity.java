@@ -18,11 +18,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickScan(View v){
-        start(Scan.class);
+        Intent i = new Intent(getBaseContext(), CourseList.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("Function","Scan");
+        i.putExtras(bundle);
+        startActivity(i);
     }
 
     public void onClickView(View v){
-        start(Display.class);
+        Intent i = new Intent(getBaseContext(), CourseList.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("Function","View");
+        i.putExtras(bundle);
+        startActivity(i);
     }
 
     public void start(Class c){

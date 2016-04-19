@@ -1,14 +1,11 @@
 package com.project.uwi.enroll;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.ListViewCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -18,61 +15,45 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 
 import java.util.ArrayList;
-import java.util.StringTokenizer;
 
-public class Display extends AppCompatActivity {
+public class StudentList extends AppCompatActivity {
 
-    ArrayList<String> courses = new ArrayList<>();
+    ArrayList<String> students = new ArrayList<>();
     Firebase mRootRef;
     ListView mListView;
-
+    String courseCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_display);
+        setContentView(R.layout.activity_student_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        Firebase.setAndroidContext(this);
         mRootRef = new Firebase("https://enroll.firebaseio.com");
-        mListView = (ListView) findViewById(R.id.listView);
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(Display.this, Course_Details.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("courseCode", courses.get(position));
-                i.putExtras(bundle);
-                startActivity(i);
-            }
-        });
+        mListView = (ListView) findViewById(R.id.listStudents);
+
+        Bundle bundle = getIntent().getExtras();
+        if (bundle.containsKey("courseCode")){
+            courseCode = bundle.getString("courseCode");
+
+        }
 
     }
 
     protected void onStart() {
         super.onStart();
 
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, courses);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, students);
         mListView.setAdapter(adapter);
 
 
-        Firebase course = mRootRef.child("courses");
+        Firebase course = mRootRef.child(courseCode);
         course.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                String course = dataSnapshot.getValue(String.class);
-                courses.add(course);
+                String student = dataSnapshot.getValue(String.class);
+                students.add(student);
                 adapter.notifyDataSetChanged();
             }
 
@@ -97,6 +78,5 @@ public class Display extends AppCompatActivity {
             }
         });
     }
-
 
 }

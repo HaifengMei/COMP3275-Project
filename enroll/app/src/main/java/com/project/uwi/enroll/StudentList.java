@@ -8,11 +8,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
+import com.firebase.ui.FirebaseListAdapter;
 
 import java.util.ArrayList;
 
@@ -36,47 +38,19 @@ public class StudentList extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if (bundle.containsKey("courseCode")){
             courseCode = bundle.getString("courseCode");
-
         }
 
-    }
-
-    protected void onStart() {
-        super.onStart();
-
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, students);
+        Firebase course = mRootRef.child(courseCode);
+        FirebaseListAdapter<String> adapter =
+                new FirebaseListAdapter<String>(this,String.class,android.R.layout.simple_list_item_1, course) {
+                    @Override
+                    protected void populateView(View view, String s, int i) {
+                        TextView textView = (TextView) view.findViewById(android.R.id.text1);
+                        textView.setText(s);
+                    }
+                };
         mListView.setAdapter(adapter);
 
-
-        Firebase course = mRootRef.child(courseCode);
-        course.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                String student = dataSnapshot.getValue(String.class);
-                students.add(student);
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-
-            }
-        });
     }
 
 }

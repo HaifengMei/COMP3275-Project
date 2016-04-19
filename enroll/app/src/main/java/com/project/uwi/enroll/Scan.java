@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.client.Firebase;
 import com.project.uwi.enroll.com.google.zxing.integration.android.IntentIntegrator;
 import com.project.uwi.enroll.com.google.zxing.integration.android.IntentResult;
 
@@ -23,6 +24,8 @@ public class Scan extends AppCompatActivity implements View.OnClickListener {
     private String courseCode="Code";
     private Map<String, Integer> map = new HashMap<>();
     ImageView img_present;
+    Firebase mRootRef;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,14 +35,14 @@ public class Scan extends AppCompatActivity implements View.OnClickListener {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
         Bundle bundle = getIntent().getExtras();
         if (bundle.containsKey("courseCode")){
             courseCode = bundle.getString("courseCode");
+            mRootRef = new Firebase("https://enroll.firebaseio.com/");
 
         }
         setUpUi();
-
-
     }
 
     public void setUpUi(){
@@ -70,6 +73,8 @@ public class Scan extends AppCompatActivity implements View.OnClickListener {
             String scanContent = scanningResult.getContents();
             StudentID.setText("ID: " + scanContent);
             img_present.setImageResource(map.get("scan_success"));
+            Firebase course = mRootRef.child(courseCode);
+            course.push().setValue(scanContent);
         }else{
             Toast toast = Toast.makeText(getApplicationContext(),
                     "No scan data received!", Toast.LENGTH_SHORT);

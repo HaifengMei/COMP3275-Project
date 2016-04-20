@@ -23,7 +23,7 @@ public class StudentList extends AppCompatActivity {
     ArrayList<String> students = new ArrayList<>();
     Firebase mRootRef;
     ListView mListView;
-    String courseCode;
+    String courseCode, Date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +36,12 @@ public class StudentList extends AppCompatActivity {
         mListView = (ListView) findViewById(R.id.listStudents);
 
         Bundle bundle = getIntent().getExtras();
-        if (bundle.containsKey("courseCode")){
+        if (bundle.containsKey("courseCode") && bundle.containsKey("Date")){
             courseCode = bundle.getString("courseCode");
+            Date = bundle.getString("Date");
         }
 
-        Firebase course = mRootRef.child(courseCode);
+        Firebase course = mRootRef.child(courseCode+"/"+Date);
         FirebaseListAdapter<String> adapter =
                 new FirebaseListAdapter<String>(this,String.class,android.R.layout.simple_list_item_1, course) {
                     @Override

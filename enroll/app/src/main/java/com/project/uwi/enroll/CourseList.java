@@ -19,7 +19,7 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.ui.FirebaseListAdapter;
 
-import java.util.ArrayList;
+import java.util.*;
 
 //Allows user to select which course they wish to interact with.
 public class CourseList extends AppCompatActivity {
@@ -62,7 +62,6 @@ public class CourseList extends AppCompatActivity {
     }
 
 
-
     protected void SelectCourse() {// Pases the course code to the respective activity for use
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -71,11 +70,11 @@ public class CourseList extends AppCompatActivity {
                 if (Func.equals("Scan")) {
                     i = new Intent(CourseList.this, Scan.class);
                 } else if (Func.equals("View")) {
-                    i = new Intent(CourseList.this, StudentList.class);
+                    i = new Intent(CourseList.this, Date.class);
                 }
                 Bundle bundle = new Bundle();
                 bundle.putString("courseCode", parent.getItemAtPosition(position).toString());
-
+                bundle.putString("Function",Func);
                 i.putExtras(bundle);
                 startActivity(i);
             }

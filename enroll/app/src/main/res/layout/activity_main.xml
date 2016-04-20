@@ -10,31 +10,24 @@
     android:background="@drawable/bg"
     tools:context="com.project.uwi.enroll.MainActivity">
 
-    <Button android:id="@+id/take_Att"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onClickScan"
-        android:text="Take Attendance"
-        android:layout_marginBottom="107dp"
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:id="@+id/view_button"
+        android:src="@drawable/view_button"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/view_Att" />
-
-    <Button android:id="@+id/view_Att"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onClickView"
-        android:text="View Attendance"
-        android:layout_marginBottom="24dp"
-        android:layout_above="@+id/take_Att"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentStart="true"
+        android:clickable="true"
+        android:onClick="onClickView" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/RR_Logo"
-        android:src="@drawable/logo"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="31dp" />
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:id="@+id/scan_button"
+        android:src="@drawable/enroll_button"
+        android:layout_alignTop="@+id/view_button"
+        android:layout_alignParentEnd="true"
+        android:clickable="true"
+        android:onClick="onClickScan" />
 
 </RelativeLayout>

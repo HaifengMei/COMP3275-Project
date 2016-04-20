@@ -19,7 +19,7 @@ import java.util.Map;
 
 public class Scan extends AppCompatActivity implements View.OnClickListener {
 
-    private Button scanBtn;
+    private ImageView scanBtn;
     private TextView txt_courseCode, StudentID;
     private String courseCode="Code";
     private Map<String, Integer> map = new HashMap<>();
@@ -46,7 +46,7 @@ public class Scan extends AppCompatActivity implements View.OnClickListener {
     }
 
     public void setUpUi(){
-        scanBtn = (Button) findViewById(R.id.scan_button);
+        scanBtn = (ImageView) findViewById(R.id.scan_button);
         map.put("scan_success", R.drawable.present);
         img_present = (ImageView) findViewById(R.id.img_scan);
         StudentID = (TextView) findViewById(R.id.Student_ID);

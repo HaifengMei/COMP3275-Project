@@ -35,6 +35,7 @@ public class CourseList extends AppCompatActivity {
         setContentView(R.layout.activity_course_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Firebase.setAndroidContext(this);
         mRootRef = new Firebase("https://enroll.firebaseio.com");

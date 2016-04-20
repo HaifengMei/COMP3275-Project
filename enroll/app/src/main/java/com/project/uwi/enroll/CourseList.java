@@ -10,14 +10,17 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
+import com.firebase.ui.FirebaseListAdapter;
 
 import java.util.ArrayList;
+
 //Allows user to select which course they wish to interact with.
 public class CourseList extends AppCompatActivity {
     Firebase mRootRef;
@@ -40,137 +43,44 @@ public class CourseList extends AppCompatActivity {
 
         //Retrieves the course code from courselist
         Bundle bundle = getIntent().getExtras();
-        if (bundle.containsKey("Function")){
+        if (bundle.containsKey("Function")) {
             Func = bundle.getString("Function");
         }
 
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, courses);
-        lv.setAdapter(adapter);
-
-
         Firebase course = mRootRef.child("courses");
-        course.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                String course = dataSnapshot.getValue(String.class);
-                courses.add(course);
-                /*if(firstLoad==0){
-                    courses.add(course);
-                    firstLoad=1;
-                }else{
-                    int i=0;
-                    while(!courses.isEmpty()){
-                        if(!courses.get(i).equals(course)){
-                            courses.add(course);
-                            break;
-                        }
-                        i++;
+        FirebaseListAdapter<String> adapter =
+                new FirebaseListAdapter<String>(this,String.class,android.R.layout.simple_list_item_1, course) {
+                    @Override
+                    protected void populateView(View view, String s, int i) {
+                        TextView textView = (TextView) view.findViewById(android.R.id.text1);
+                        textView.setText(s);
                     }
-                }*/
-
-
-
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-
-            }
-        });
-
-        SelectCourse();
+                };
+        lv.setAdapter(adapter);
+       SelectCourse();
 
     }
 
-   /* protected void onStart() {//Pull courses from firebase server
-        super.onStart();
-
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, courses);
-        lv.setAdapter(adapter);
 
 
-        Firebase course = mRootRef.child("courses");
-        course.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                String course = dataSnapshot.getValue(String.class);
-                courses.add(course);
-                /*if(firstLoad==0){
-                    courses.add(course);
-                    firstLoad=1;
-                }else{
-                    int i=0;
-                    while(!courses.isEmpty()){
-                        if(!courses.get(i).equals(course)){
-                            courses.add(course);
-                            break;
-                        }
-                        i++;
-                    }
-                }
-
-
-
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-
-            }
-        });
-    }*/
-
-    protected void SelectCourse(){// Pases the course code to the respective activity for use
+    protected void SelectCourse() {// Pases the course code to the respective activity for use
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i=null;
+                Intent i = null;
                 if (Func.equals("Scan")) {
                     i = new Intent(CourseList.this, Scan.class);
-                } else if(Func.equals("View")) {
+                } else if (Func.equals("View")) {
                     i = new Intent(CourseList.this, StudentList.class);
                 }
                 Bundle bundle = new Bundle();
-                bundle.putString("courseCode", courses.get(position));
+                bundle.putString("courseCode", parent.getItemAtPosition(position).toString());
 
                 i.putExtras(bundle);
                 startActivity(i);
             }
         });
     }
-
 
 
 }

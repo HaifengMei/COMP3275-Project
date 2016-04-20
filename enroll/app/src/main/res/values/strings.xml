@@ -5,4 +5,5 @@
     <string name="title_activity_course_list">Select Course</string>
     <string name="title_activity_student_list">Students</string>
     <string name="title_activity_display">Select Course</string>
+    <string name="title_activity_date">Date</string>
 </resources>

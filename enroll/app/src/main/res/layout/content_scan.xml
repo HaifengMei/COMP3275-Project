@@ -8,11 +8,26 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/bg"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.project.uwi.enroll.Scan"
     tools:showIn="@layout/activity_scan">
 
+
+    <Button android:id="@+id/scan_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="scan"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="99dp" />
+    <!--<TextView
+        android:id="@+id/scan_format"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textIsSelectable="true"
+        android:hint="Format"
+        android:layout_below="@+id/scan_content"
+        android:layout_centerHorizontal="true" />-->
 
     <TextView
         android:layout_width="wrap_content"
@@ -38,18 +53,10 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/Student_ID"
         android:hint="Student ID"
-        android:layout_marginBottom="40dp"
         android:layout_above="@+id/scan_button"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="26dp" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:id="@+id/scan_button"
-        android:src="@drawable/scan_button"
-        android:layout_marginBottom="47dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>

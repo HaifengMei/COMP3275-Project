@@ -11,15 +11,35 @@
     tools:context="com.project.uwi.enroll.MainActivity">
 
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="UWI Timescape "
+        android:textColor="#FFFFFFFF"
+        android:id="@+id/txt_timescape"
+        android:textSize="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/timescape"
+        android:src="@drawable/timescape"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="74dp" />
+
     <ImageView
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:id="@+id/view_button"
         android:src="@drawable/view_button"
         android:onClick="onClickView"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="56dp" />
+        android:layout_marginStart="23dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
 
     <ImageView
         android:layout_width="150dp"
@@ -28,7 +48,8 @@
         android:src="@drawable/enroll_button"
         android:clickable="true"
         android:onClick="onClickScan"
+        android:layout_marginEnd="33dp"
         android:layout_alignTop="@+id/view_button"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="31dp" />
+        android:layout_alignParentEnd="true" />
+
 </RelativeLayout>

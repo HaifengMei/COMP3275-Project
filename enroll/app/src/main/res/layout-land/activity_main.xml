@@ -7,35 +7,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/bg_main"
+    android:background="@drawable/bg"
     tools:context="com.project.uwi.enroll.MainActivity">
 
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/timescape"
-        android:src="@drawable/timescape"
-        android:layout_alignTop="@+id/txt_timescape"
-        android:layout_alignParentEnd="true" />
-
-    <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:id="@+id/view_button"
-        android:src="@drawable/view_button"
-        android:layout_alignParentBottom="true"
-        android:onClick="onClickView" />
-
-    <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:id="@+id/scan_button"
-        android:src="@drawable/enroll_button"
-        android:layout_alignTop="@+id/view_button"
-        android:layout_alignParentEnd="true"
-        android:clickable="true"
-        android:onClick="onClickScan" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -44,8 +18,38 @@
         android:text="UWI Timescape "
         android:textColor="#FFFFFFFF"
         android:id="@+id/txt_timescape"
-        android:textSize="40dp"
-        android:layout_alignParentTop="true"
+        android:textSize="30dp"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/timescape"
+        android:src="@drawable/timescape"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="74dp" />
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:id="@+id/view_button"
+        android:src="@drawable/view_button"
+        android:onClick="onClickView"
+        android:layout_marginStart="23dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:id="@+id/scan_button"
+        android:src="@drawable/enroll_button"
+        android:clickable="true"
+        android:onClick="onClickScan"
+        android:layout_marginEnd="33dp"
+        android:layout_alignTop="@+id/view_button"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

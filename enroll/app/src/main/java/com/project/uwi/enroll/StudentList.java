@@ -31,6 +31,7 @@ public class StudentList extends AppCompatActivity {
         setContentView(R.layout.activity_student_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mRootRef = new Firebase("https://enroll.firebaseio.com");
         mListView = (ListView) findViewById(R.id.listStudents);

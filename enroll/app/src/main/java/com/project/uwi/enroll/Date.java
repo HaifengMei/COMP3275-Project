@@ -60,7 +60,6 @@ public class Date extends AppCompatActivity {
 
 
         Firebase dates = mRootRef.child(courseCode + "date");
-        Query query = dates.orderByValue();
         if(dates.getKey() == null){
             Intent i = i = new Intent(Date.this, Scan.class);
             bundle = new Bundle();

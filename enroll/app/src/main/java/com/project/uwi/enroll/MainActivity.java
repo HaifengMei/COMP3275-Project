@@ -15,26 +15,11 @@ import java.text.SimpleDateFormat;
 
 public class MainActivity extends AppCompatActivity {
 
-    Firebase mRootRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-//        Firebase.setAndroidContext(this);
-//        mRootRef = new Firebase("https://enroll.firebaseio.com");
-//
-//        long date = System.currentTimeMillis();
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//        String dateString = sdf.format(date);
-//        Firebase time = mRootRef.child("TIME");
-//        time.setValue(dateString);
-//
-//        Toast toast = Toast.makeText(getApplicationContext(),
-//                dateString, Toast.LENGTH_SHORT);
-//        toast.show();
-
 
     }
 

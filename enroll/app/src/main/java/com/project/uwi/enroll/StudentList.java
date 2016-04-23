@@ -20,7 +20,6 @@ import java.util.ArrayList;
 
 public class StudentList extends AppCompatActivity {
 
-    ArrayList<String> students = new ArrayList<>();
     Firebase mRootRef;
     ListView mListView;
     String courseCode, Date;

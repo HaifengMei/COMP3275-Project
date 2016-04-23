@@ -24,10 +24,8 @@ import java.util.*;
 //Allows user to select which course they wish to interact with.
 public class CourseList extends AppCompatActivity {
     Firebase mRootRef;
-    ArrayList<String> courses = new ArrayList<>();
     ListView lv;
     String Func;
-    int firstLoad = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

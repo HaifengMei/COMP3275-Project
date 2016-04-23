@@ -93,10 +93,11 @@ public class Scan extends AppCompatActivity implements View.OnClickListener {
 
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         //retrieve scan result
+
         IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
-        if (scanningResult != null) {
+        String scanContent = scanningResult.getContents();
+        if (scanContent != null) {
             //we have a result
-            String scanContent = scanningResult.getContents();
             StudentID.setText("ID: " + scanContent);
             img_present.setImageResource(map.get("scan_success"));
 

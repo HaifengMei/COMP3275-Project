@@ -31,7 +31,7 @@ public class Scan extends AppCompatActivity implements View.OnClickListener {
     private Map<String, Integer> map = new HashMap<>();
     ImageView img_present;
     Firebase mRootRef, mdate;
-    String Date, DATE = "";
+    String Date, DATE;
 
 
     @Override

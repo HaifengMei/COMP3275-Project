@@ -19,9 +19,9 @@
         android:layout_height="60dp"
         android:id="@+id/scan_button"
         android:src="@drawable/scan_button"
-        android:layout_below="@+id/img_scan"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="58dp" />
+        android:layout_marginBottom="72dp"
+        android:layout_alignBottom="@+id/img_scan"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -30,7 +30,7 @@
         android:id="@+id/txt_courseCode"
         android:hint="Course Code"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignStart="@+id/Student_ID" />
 
     <ImageView
         android:layout_width="300dp"
@@ -38,8 +38,7 @@
         android:id="@+id/img_scan"
         android:src="@drawable/scan"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="53dp" />
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -47,8 +46,10 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/Student_ID"
         android:hint="Student ID"
-        android:layout_alignBottom="@+id/img_scan"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginTop="37dp"
+        android:layout_marginStart="31dp"
+        android:layout_below="@+id/txt_courseCode"
+        android:layout_alignStart="@+id/scan_button" />
 
 
 

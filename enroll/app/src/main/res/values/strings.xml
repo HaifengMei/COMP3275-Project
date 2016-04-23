@@ -1,7 +1,9 @@
 <resources>
-    <string name="app_name">enroll</string>
+    <string name="app_name">UWI TimeScape</string>
     <string name="title_activity_scan">Scan</string>
     <string name="title_activity_view">View</string>
-    <string name="title_activity_display">Display</string>
-    <string name="title_activity_course__details">Course Details</string>
+    <string name="title_activity_course_list">Select Course</string>
+    <string name="title_activity_student_list">Students</string>
+    <string name="title_activity_display">Select Course</string>
+    <string name="title_activity_date">Date</string>
 </resources>

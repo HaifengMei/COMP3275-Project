@@ -2,5 +2,5 @@
 UWI Timescape
 Members:
 Haifeng Mei 814000650
-Khair Ali 
+Khair Ali 811100561
 Mitra Kalloo 812000767
